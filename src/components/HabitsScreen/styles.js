@@ -14,7 +14,7 @@ export const View = styled.div`
   }
 `;
 
-export const CreatHabit = styled.div`
+export const Habit = styled.div`
   width: 100%;
   height: 45px;
   margin-top: 70px;
