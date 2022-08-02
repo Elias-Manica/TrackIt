@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const View = styled.div`
   height: 88vh;
   background-color: #f2f2f2;
+  margin-bottom: 90px;
   p {
     margin: 30px 20px;
     font-family: "Lexend Deca";
@@ -14,7 +15,7 @@ export const View = styled.div`
   }
 `;
 
-export const Habit = styled.div`
+export const HabitLayout = styled.div`
   width: 100%;
   height: 45px;
   margin-top: 70px;

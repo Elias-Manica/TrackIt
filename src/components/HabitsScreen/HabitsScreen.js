@@ -1,17 +1,19 @@
 import BottomBar from "../BottomBar/BottomBar";
 import TopBar from "../TopBar/TopBar";
 import CreateHabit from "../CreateHabit/CreateHabit";
-import { ButtonCreate, Habit, Tittle, View } from "./styles";
+import { ButtonCreate, HabitLayout, Tittle, View } from "./styles";
+import Habit from "../Habit/Habit";
 
 export default function HabitsScreen() {
   return (
     <>
       <TopBar />
       <View>
-        <Habit>
+        <HabitLayout>
           <Tittle>Meus hábitos</Tittle>
           <ButtonCreate>+</ButtonCreate>
-        </Habit>
+        </HabitLayout>
+        <Habit />
         <CreateHabit />
         <p>
           Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
