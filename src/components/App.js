@@ -5,6 +5,7 @@ import LoginScreen from "./LoginScreen/LoginScreen";
 import SingUpScreen from "./SingUpScreen/SingUpScreen";
 import HabitsScreen from "./HabitsScreen/HabitsScreen";
 import TodayScreen from "./TodayScreen/TodayScreen";
+import HistoryScreen from "./HistoryScreen/HistoryScreen";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/cadastro" element={<SingUpScreen />} />
           <Route path="/habitos" element={<HabitsScreen />} />
           <Route path="/hoje" element={<TodayScreen />} />
+          <Route path="/historico" element={<HistoryScreen />} />
         </Routes>
       </BrowserRouter>
     </>
