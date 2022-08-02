@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const View = styled.div`
   height: 88vh;
   background-color: #f2f2f2;
-  margin-bottom: 90px;
+  padding-bottom: 90px;
   p {
     margin: 30px 20px;
     font-family: "Lexend Deca";
@@ -28,7 +28,7 @@ export const Tittle = styled.h1`
   font-family: "Lexend Deca";
   font-style: normal;
   font-weight: 400;
-  font-size: 22.976px;
+  font-size: 23px;
   line-height: 29px;
   color: #126ba5;
 `;
