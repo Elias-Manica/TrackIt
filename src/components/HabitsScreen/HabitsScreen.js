@@ -1,11 +1,15 @@
+import BottomBar from "../BottomBar/BottomBar";
 import TopBar from "../TopBar/TopBar";
-import { View } from "./styles";
+import { Tittle, View } from "./styles";
 
 export default function HabitsScreen() {
   return (
     <>
       <TopBar />
-      <View>screen habitds</View>
+      <View>
+        <Tittle>screen habits</Tittle>
+      </View>
+      <BottomBar />
     </>
   );
 }
