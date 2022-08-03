@@ -24,8 +24,22 @@ export default function App() {
               </PrivatePage>
             }
           />
-          <Route path="/hoje" element={<TodayScreen />} />
-          <Route path="/historico" element={<HistoryScreen />} />
+          <Route
+            path="/hoje"
+            element={
+              <PrivatePage>
+                <TodayScreen />
+              </PrivatePage>
+            }
+          />
+          <Route
+            path="/historico"
+            element={
+              <PrivatePage>
+                <HistoryScreen />
+              </PrivatePage>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

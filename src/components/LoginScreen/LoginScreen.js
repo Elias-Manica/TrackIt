@@ -10,18 +10,17 @@ export default function LoginScreen() {
 
   const navigate = useNavigate();
 
-  function goToHabit(res) {
-    localStorage.setItem(
-      "trackit",
-      JSON.stringify({ token: `${res.data.token}` })
-    );
+  function goToHabit(tokenUser) {
+    localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
     navigate("/habitos");
   }
 
   function tryLogin(e) {
     e.preventDefault();
     console.log("clicou");
-    login({ email, password }).then((res) => goToHabit(res));
+    login({ email, password })
+      .then((res) => goToHabit(res.data.token))
+      .catch((res) => alert(res.response.data.message));
   }
 
   return (

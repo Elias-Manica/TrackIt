@@ -13,11 +13,18 @@ export default function SingUpScreen() {
 
   const navigate = useNavigate();
 
+  function singUpCorrect(res) {
+    console.log(res, "foi");
+    alert("Parabéns! seu usuário foi cadastrado corretamente");
+    navigate("/");
+  }
+
   function singUpData(e) {
     e.preventDefault();
+    console.log(email, password, name, image);
     singUp({ email, password, name, image })
-      .catch((res) => alert(res.response.data.message))
-      .then((res) => console.log(res.data));
+      .then((res) => singUpCorrect(res))
+      .catch((res) => alert(res.response.data.message));
   }
 
   return (
