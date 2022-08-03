@@ -1,11 +1,15 @@
+import React from "react";
+import { useContext } from "react";
+import UserContext from "../../context/context";
+
 import { Container, ImageUser, Tittle } from "./styles";
-import imgUser from "../../assets/images/ícone-do-usuário-do-vetor-7337510.jpg";
 
 export default function TopBar() {
+  const { picUser, setPicUser } = useContext(UserContext);
   return (
     <Container>
       <Tittle>TrackIt</Tittle>
-      <ImageUser src={imgUser} />
+      <ImageUser src={picUser} />
     </Container>
   );
 }

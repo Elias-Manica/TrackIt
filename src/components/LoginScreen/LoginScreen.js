@@ -1,19 +1,26 @@
 import React from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { login } from "../../services/trackitServices";
+
 import logo from "../../assets/images/logo.png";
 import { View, Logo, Input, Form, Button, GoSingUp } from "./styles";
+import UserContext from "../../context/context";
 
 export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const { picUser, setPicUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  function loginValid(tokenUser) {
+  function loginValid(tokenUser, imageUser) {
     localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
+    console.log(imageUser);
+    setPicUser(imageUser);
+    console.log(picUser);
     setLoading(false);
     navigate("/hoje");
   }
@@ -28,7 +35,7 @@ export default function LoginScreen() {
     setLoading(true);
     console.log("clicou");
     login({ email, password })
-      .then((res) => loginValid(res.data.token))
+      .then((res) => loginValid(res.data.token, res.data.image))
       .catch((res) => loginInvalid(res.response.data.message));
   }
 
