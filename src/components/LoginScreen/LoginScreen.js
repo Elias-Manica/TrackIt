@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 import { login } from "../../services/trackitServices";
 import logo from "../../assets/images/logo.png";
 import { View, Logo, Input, Form, Button, GoSingUp } from "./styles";
@@ -7,20 +8,28 @@ import { View, Logo, Input, Form, Button, GoSingUp } from "./styles";
 export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
 
-  function goToHabit(tokenUser) {
+  function loginValid(tokenUser) {
     localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
+    setLoading(false);
     navigate("/habitos");
+  }
+
+  function loginInvalid(messageError) {
+    alert(messageError);
+    setLoading(false);
   }
 
   function tryLogin(e) {
     e.preventDefault();
+    setLoading(true);
     console.log("clicou");
     login({ email, password })
-      .then((res) => goToHabit(res.data.token))
-      .catch((res) => alert(res.response.data.message));
+      .then((res) => loginValid(res.data.token))
+      .catch((res) => loginInvalid(res.response.data.message));
   }
 
   return (
@@ -41,7 +50,13 @@ export default function LoginScreen() {
           onChange={(e) => setPassword(e.target.value)}
           required
         ></Input>
-        <Button>Entrar</Button>
+        <Button>
+          {loading ? (
+            <ThreeDots color="white" height={40} width={40} />
+          ) : (
+            "Entrar"
+          )}
+        </Button>
       </Form>
       <GoSingUp onClick={() => navigate("/cadastro")}>
         Não tem uma conta? Cadastre-se!

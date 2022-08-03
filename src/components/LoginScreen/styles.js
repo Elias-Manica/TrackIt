@@ -49,6 +49,9 @@ export const Button = styled.button`
   cursor: pointer;
   color: #ffffff;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const GoSingUp = styled.h1`
