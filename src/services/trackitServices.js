@@ -7,4 +7,9 @@ function login(body) {
   return promise;
 }
 
-export { login };
+function singUp(body) {
+  const promise = axios.post(`${Base_URL}/auth/sign-up`, body);
+  return promise;
+}
+
+export { login, singUp };

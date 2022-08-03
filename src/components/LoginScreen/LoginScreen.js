@@ -10,10 +10,18 @@ export default function LoginScreen() {
 
   const navigate = useNavigate();
 
+  function goToHabit(res) {
+    localStorage.setItem(
+      "trackit",
+      JSON.stringify({ token: `${res.data.token}` })
+    );
+    navigate("/habitos");
+  }
+
   function tryLogin(e) {
     e.preventDefault();
     console.log("clicou");
-    login({ email, password }).then((res) => navigate("/habitos"));
+    login({ email, password }).then((res) => goToHabit(res));
   }
 
   return (
@@ -25,16 +33,20 @@ export default function LoginScreen() {
           type={"email"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         ></Input>
         <Input
           placeholder="senha"
           type={"password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         ></Input>
         <Button>Entrar</Button>
       </Form>
-      <GoSingUp>Não tem uma conta? Cadastre-se!</GoSingUp>
+      <GoSingUp onClick={() => navigate("/cadastro")}>
+        Não tem uma conta? Cadastre-se!
+      </GoSingUp>
     </View>
   );
 }
