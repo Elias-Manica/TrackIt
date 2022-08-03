@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PrivatePage from "../services/PrivatePage";
 
 import { GlobalStyle } from "../assets/styles/GlobalStyles";
 import LoginScreen from "./LoginScreen/LoginScreen";
@@ -15,7 +16,14 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginScreen />} />
           <Route path="/cadastro" element={<SingUpScreen />} />
-          <Route path="/habitos" element={<HabitsScreen />} />
+          <Route
+            path="/habitos"
+            element={
+              <PrivatePage>
+                <HabitsScreen />
+              </PrivatePage>
+            }
+          />
           <Route path="/hoje" element={<TodayScreen />} />
           <Route path="/historico" element={<HistoryScreen />} />
         </Routes>
