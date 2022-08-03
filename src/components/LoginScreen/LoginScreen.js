@@ -6,21 +6,22 @@ import { login } from "../../services/trackitServices";
 
 import logo from "../../assets/images/logo.png";
 import { View, Logo, Input, Form, Button, GoSingUp } from "./styles";
-import UserContext from "../../context/context";
+import UserContext from "../../context/imagecontext";
+import TokenUser from "../../context/tokencontext";
 
 export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const { picUser, setPicUser } = useContext(UserContext);
-
+  const { token, setToken } = useContext(TokenUser);
   const navigate = useNavigate();
 
   function loginValid(tokenUser, imageUser) {
     localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
     console.log(imageUser);
     setPicUser(imageUser);
-    console.log(picUser);
+    setToken(tokenUser);
     setLoading(false);
     navigate("/hoje");
   }

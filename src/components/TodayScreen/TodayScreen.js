@@ -1,4 +1,9 @@
 import dayjs from "dayjs";
+import React from "react";
+import { useContext, useEffect } from "react";
+import TokenUser from "../../context/tokencontext";
+
+import { listHabit } from "../../services/trackitServices";
 
 import {
   CompletedHabits,
@@ -14,6 +19,11 @@ import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
 
 export default function TodayScreen() {
+  const { token, setToken } = useContext(TokenUser);
+  const [habits, setHabits] = React.useState([]);
+
+  useEffect(() => listHabit(token).then((res) => setHabits(res.data)), []);
+
   let updateLocale = require("dayjs/plugin/updateLocale");
 
   dayjs.extend(updateLocale);
@@ -31,14 +41,16 @@ export default function TodayScreen() {
   });
 
   const day = dayjs().locale("pt-br").format("dddd, DD/MM");
-  console.log(day);
   return (
     <>
       <TopBar />
       <View>
         <DayWeek>{day}</DayWeek>
-        <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
-        <CompletedHabits>67% dos hábitos concluídos</CompletedHabits>
+        {habits.length > 0 ? (
+          <CompletedHabits>67% dos hábitos concluídos</CompletedHabits>
+        ) : (
+          <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
+        )}
         <HabitContainer>
           <GoalHabit>
             <Habit>Ler 1 capítulo de livro</Habit>

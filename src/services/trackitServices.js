@@ -12,4 +12,14 @@ function singUp(body) {
   return promise;
 }
 
-export { login, singUp };
+function listHabit(token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.get(`${Base_URL}/habits`, config);
+  return promise;
+}
+
+export { login, singUp, listHabit };
