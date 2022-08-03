@@ -15,7 +15,7 @@ export default function LoginScreen() {
   function loginValid(tokenUser) {
     localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
     setLoading(false);
-    navigate("/habitos");
+    navigate("/hoje");
   }
 
   function loginInvalid(messageError) {
