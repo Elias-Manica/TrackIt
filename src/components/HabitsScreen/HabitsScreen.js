@@ -29,7 +29,11 @@ export default function HabitsScreen() {
             +
           </ButtonCreate>
         </HabitLayout>
-        {creatingHabit ? <CreateHabit /> : ""}
+        {creatingHabit ? (
+          <CreateHabit setCreatingHabit={setCreatingHabit} />
+        ) : (
+          ""
+        )}
         {listHabits.length > 0 ? (
           listHabits.map((value) => (
             <Habit key={value.id} tittle={value.name} days={value.days} />
@@ -40,11 +44,6 @@ export default function HabitsScreen() {
             começar a trackear!
           </p>
         )}
-
-        <p>
-          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-          começar a trackear!
-        </p>
       </View>
       <BottomBar />
     </>

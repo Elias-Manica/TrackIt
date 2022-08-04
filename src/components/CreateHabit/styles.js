@@ -64,4 +64,7 @@ export const ButtonSave = styled.button`
   text-align: center;
   cursor: pointer;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
