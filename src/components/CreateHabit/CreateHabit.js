@@ -38,6 +38,12 @@ export default function CreateHabit({ setCreatingHabit }) {
     setCreatingHabit(false);
   }
 
+  function cancelCreateHabit() {
+    setListDays([]);
+    console.log(listDays);
+    setCreatingHabit(false);
+  }
+
   return (
     <Container>
       <form onSubmit={creatingHabit}>
@@ -57,7 +63,7 @@ export default function CreateHabit({ setCreatingHabit }) {
           <DayLayout index={6}>S</DayLayout>
         </Days>
         <ContainerButtons>
-          <Cancel>Cancelar</Cancel>
+          <Cancel onClick={() => cancelCreateHabit()}>Cancelar</Cancel>
           <ButtonSave>
             {loading ? (
               <ThreeDots color="white" height={40} width={40} />
