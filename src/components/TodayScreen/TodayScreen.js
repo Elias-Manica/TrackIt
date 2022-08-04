@@ -3,7 +3,7 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import TokenUser from "../../context/tokencontext";
 
-import { listHabit } from "../../services/trackitServices";
+import { listHabitToday } from "../../services/trackitServices";
 
 import {
   CompletedHabits,
@@ -22,7 +22,7 @@ export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
 
-  useEffect(() => listHabit(token).then((res) => setHabits(res.data)), []);
+  useEffect(() => listHabitToday(token).then((res) => setHabits(res.data)), []);
 
   let updateLocale = require("dayjs/plugin/updateLocale");
 
@@ -51,14 +51,18 @@ export default function TodayScreen() {
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
-        <HabitContainer>
-          <GoalHabit>
-            <Habit>Ler 1 capítulo de livro</Habit>
-            <HabitData>Sequência atual: 1 dia</HabitData>
-            <HabitData>Seu recorde: 5 dias</HabitData>
-          </GoalHabit>
-          <ion-icon name="checkbox"></ion-icon>
-        </HabitContainer>
+        {habits.length > 0 ? (
+          <HabitContainer>
+            <GoalHabit>
+              <Habit>Ler 1 capítulo de livro</Habit>
+              <HabitData>Sequência atual: 1 dia</HabitData>
+              <HabitData>Seu recorde: 5 dias</HabitData>
+            </GoalHabit>
+            <ion-icon name="checkbox"></ion-icon>
+          </HabitContainer>
+        ) : (
+          ""
+        )}
       </View>
       <BottomBar />
     </>

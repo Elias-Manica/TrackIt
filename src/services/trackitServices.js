@@ -22,4 +22,29 @@ function listHabit(token) {
   return promise;
 }
 
-export { login, singUp, listHabit };
+function listHabitToday(token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.get(`${Base_URL}/habits`, config);
+  return promise;
+}
+
+function createHabit(name, days, token) {
+  const body = {
+    name: name,
+    days: days,
+  };
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.post(`${Base_URL}/habits`, body, config);
+  return promise;
+}
+
+export { login, singUp, listHabitToday, listHabit, createHabit };
