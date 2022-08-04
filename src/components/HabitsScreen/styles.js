@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const View = styled.div`
+  height: 100vh;
   background-color: #f2f2f2;
   padding-bottom: 90px;
   p {

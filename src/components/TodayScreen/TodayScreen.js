@@ -24,6 +24,8 @@ export default function TodayScreen() {
 
   useEffect(() => listHabitToday(token).then((res) => setHabits(res.data)), []);
 
+  console.log(habits);
+
   let updateLocale = require("dayjs/plugin/updateLocale");
 
   dayjs.extend(updateLocale);
@@ -51,18 +53,30 @@ export default function TodayScreen() {
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
-        {habits.length > 0 ? (
-          <HabitContainer>
-            <GoalHabit>
-              <Habit>Ler 1 capítulo de livro</Habit>
-              <HabitData>Sequência atual: 1 dia</HabitData>
-              <HabitData>Seu recorde: 5 dias</HabitData>
-            </GoalHabit>
-            <ion-icon name="checkbox"></ion-icon>
-          </HabitContainer>
-        ) : (
-          ""
-        )}
+        {habits.length > 0
+          ? habits.map((value) => (
+              <HabitContainer>
+                <GoalHabit>
+                  <Habit>{value.name}</Habit>
+                  <HabitData>
+                    Sequência atual: {value.currentSequence} dia
+                  </HabitData>
+                  <HabitData>
+                    Seu recorde: {value.highestSequence} dias
+                  </HabitData>
+                </GoalHabit>
+                <ion-icon name="checkbox"></ion-icon>
+              </HabitContainer>
+            ))
+          : // <HabitContainer>
+            //   <GoalHabit>
+            //     <Habit>Ler 1 capítulo de livro</Habit>
+            //     <HabitData>Sequência atual: 1 dia</HabitData>
+            //     <HabitData>Seu recorde: 5 dias</HabitData>
+            //   </GoalHabit>
+            //   <ion-icon name="checkbox"></ion-icon>
+            // </HabitContainer>
+            ""}
       </View>
       <BottomBar />
     </>

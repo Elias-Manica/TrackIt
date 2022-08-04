@@ -28,7 +28,7 @@ function listHabitToday(token) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const promise = axios.get(`${Base_URL}/habits`, config);
+  const promise = axios.get(`${Base_URL}/habits/today`, config);
   return promise;
 }
 

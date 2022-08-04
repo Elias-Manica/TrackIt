@@ -45,6 +45,7 @@ export const HabitContainer = styled.div`
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   padding: 10px;

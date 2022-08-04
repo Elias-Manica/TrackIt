@@ -34,6 +34,7 @@ export default function CreateHabit({ setCreatingHabit }) {
 
   function createHabitValid(res) {
     console.log(res);
+    setListDays([]);
     setLoading(false);
     setCreatingHabit(false);
   }
