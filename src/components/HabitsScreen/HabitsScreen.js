@@ -15,7 +15,15 @@ export default function HabitsScreen() {
   const [listHabits, setListHabits] = React.useState([]);
   const [creatingHabit, setCreatingHabit] = React.useState(false);
 
-  useEffect(() => listHabit(token).then((res) => setListHabits(res.data)), []);
+  function habitValid(list) {
+    setListHabits(list);
+    console.log(listHabits, "isso que ta sendo passado");
+  }
+
+  useEffect(
+    () => listHabit(token).then((res) => habitValid(res.data)),
+    [creatingHabit]
+  );
 
   console.log(listHabits);
 
@@ -30,7 +38,10 @@ export default function HabitsScreen() {
           </ButtonCreate>
         </HabitLayout>
         {creatingHabit ? (
-          <CreateHabit setCreatingHabit={setCreatingHabit} />
+          <CreateHabit
+            setCreatingHabit={setCreatingHabit}
+            setListHabits={setListHabits}
+          />
         ) : (
           ""
         )}

@@ -16,7 +16,7 @@ import {
 import DayLayout from "../Day/DayLayout";
 import { createHabit } from "../../services/trackitServices";
 
-export default function CreateHabit({ setCreatingHabit }) {
+export default function CreateHabit({ setCreatingHabit, setListHabits }) {
   const [nameHabit, setNameHabit] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const { listDays, setListDays } = useContext(ListDays);
@@ -25,15 +25,14 @@ export default function CreateHabit({ setCreatingHabit }) {
   function creatingHabit(e) {
     e.preventDefault();
     setLoading(true);
-    console.log(listDays);
     console.log(token);
-    createHabit(nameHabit, listDays, token).then((res) =>
-      createHabitValid(res)
-    );
+    createHabit(nameHabit, listDays, token)
+      .then((res) => createHabitValid(res))
+      .catch((res) => console.log(res, "erro"));
   }
 
   function createHabitValid(res) {
-    console.log(res);
+    console.log(res, "foi");
     setListDays([]);
     setLoading(false);
     setCreatingHabit(false);
@@ -41,7 +40,6 @@ export default function CreateHabit({ setCreatingHabit }) {
 
   function cancelCreateHabit() {
     setListDays([]);
-    console.log(listDays);
     setCreatingHabit(false);
   }
 

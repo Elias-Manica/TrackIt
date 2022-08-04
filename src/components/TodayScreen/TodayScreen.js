@@ -21,10 +21,13 @@ import BottomBar from "../BottomBar/BottomBar";
 export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
+  const [habitDone, setHabitDone] = React.useState([]);
+  const [lengthHabits, setLengthHabits] = React.useState([]);
 
-  useEffect(() => listHabitToday(token).then((res) => setHabits(res.data)), []);
-
-  console.log(habits);
+  useEffect(
+    () => listHabitToday(token).then((res) => setHabits(res.data)),
+    [token]
+  );
 
   let updateLocale = require("dayjs/plugin/updateLocale");
 
@@ -49,7 +52,9 @@ export default function TodayScreen() {
       <View>
         <DayWeek>{day}</DayWeek>
         {habits.length > 0 ? (
-          <CompletedHabits>67% dos hábitos concluídos</CompletedHabits>
+          <CompletedHabits>
+            {lengthHabits}% dos hábitos concluídos
+          </CompletedHabits>
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
@@ -65,18 +70,10 @@ export default function TodayScreen() {
                     Seu recorde: {value.highestSequence} dias
                   </HabitData>
                 </GoalHabit>
-                <ion-icon name="checkbox"></ion-icon>
+                <ion-icon name="checkbox" check={value.done}></ion-icon>
               </HabitContainer>
             ))
-          : // <HabitContainer>
-            //   <GoalHabit>
-            //     <Habit>Ler 1 capítulo de livro</Habit>
-            //     <HabitData>Sequência atual: 1 dia</HabitData>
-            //     <HabitData>Seu recorde: 5 dias</HabitData>
-            //   </GoalHabit>
-            //   <ion-icon name="checkbox"></ion-icon>
-            // </HabitContainer>
-            ""}
+          : ""}
       </View>
       <BottomBar />
     </>

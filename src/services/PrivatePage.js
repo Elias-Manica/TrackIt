@@ -5,8 +5,6 @@ export default function PrivatePage({ children }) {
   const auth = JSON.parse(localStorage.getItem("trackit"));
   const { token, setToken } = useContext(TokenUser);
 
-  console.log(token, auth);
-
   if (auth.token === token) {
     return <>{children}</>;
   } else {

@@ -24,15 +24,14 @@ function letterWeek(dayNumber) {
   }
 }
 
-function verifyDay(day, list) {
-  if (list.includes(day)) {
-    return true;
-  }
-}
-
 export default function Habit({ tittle, days }) {
-  const daysWeek = [0, 1, 2, 3, 4, 5, 6];
+  const daysOrder = days.sort();
+  const weekBool = [false, false, false, false, false, false, false];
 
+  daysOrder.map((value) => (weekBool[value] = true));
+
+  console.log(daysOrder, "ordem");
+  console.log(weekBool, "semana bool");
   return (
     <Container>
       <NameHabit>
@@ -40,11 +39,15 @@ export default function Habit({ tittle, days }) {
         <ion-icon name="trash-outline"></ion-icon>
       </NameHabit>
       <Days>
-        {days.map((day, index) => (
-          <Day key={index} color="grey">
-            {letterWeek(day)}
-          </Day>
-        ))}
+        {weekBool.map((bool, index) =>
+          bool ? (
+            <Day key={index} color="grey">
+              {letterWeek(index)}
+            </Day>
+          ) : (
+            <Day key={index}>{letterWeek(index)}</Day>
+          )
+        )}
       </Days>
     </Container>
   );

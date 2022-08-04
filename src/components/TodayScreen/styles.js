@@ -52,7 +52,7 @@ export const HabitContainer = styled.div`
   ion-icon {
     width: 70px;
     height: 70px;
-    color: #ebebeb;
+    color: ${(props) => (props.check ? "#8FC549" : "#E7E7E7")};
   }
 `;
 
