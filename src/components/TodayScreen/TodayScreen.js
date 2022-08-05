@@ -21,11 +21,30 @@ import BottomBar from "../BottomBar/BottomBar";
 export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
-  const [habitDone, setHabitDone] = React.useState([]);
-  const [lengthHabits, setLengthHabits] = React.useState([]);
+  const [habitDone, setHabitDone] = React.useState({});
+  const [lengthHabits, setLengthHabits] = React.useState({});
+  const [qtdDone, setqtdDone] = React.useState(0);
+
+  function listHabitRequired(lista) {
+    setHabits(lista);
+    console.log(lista);
+    setLengthHabits(lista);
+    setHabitDone(lista);
+    countHabitsDone(lista);
+  }
+
+  function countHabitsDone(listaHabits) {
+    let qtd = 0;
+    for (let i = 0; i < listaHabits.length; i++) {
+      if (listaHabits[i].done) {
+        qtd += 1;
+      }
+    }
+    setqtdDone(qtd);
+  }
 
   useEffect(
-    () => listHabitToday(token).then((res) => setHabits(res.data)),
+    () => listHabitToday(token).then((res) => listHabitRequired(res.data)),
     [token]
   );
 
@@ -51,16 +70,16 @@ export default function TodayScreen() {
       <TopBar />
       <View>
         <DayWeek>{day}</DayWeek>
-        {habits.length > 0 ? (
+        {qtdDone > 0 ? (
           <CompletedHabits>
-            {lengthHabits}% dos hábitos concluídos
+            {(qtdDone / lengthHabits.length) * 100}% dos hábitos concluídos
           </CompletedHabits>
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
         {habits.length > 0
           ? habits.map((value) => (
-              <HabitContainer>
+              <HabitContainer check={value.done}>
                 <GoalHabit>
                   <Habit>{value.name}</Habit>
                   <HabitData>
@@ -70,7 +89,7 @@ export default function TodayScreen() {
                     Seu recorde: {value.highestSequence} dias
                   </HabitData>
                 </GoalHabit>
-                <ion-icon name="checkbox" check={value.done}></ion-icon>
+                <ion-icon name="checkbox"></ion-icon>
               </HabitContainer>
             ))
           : ""}

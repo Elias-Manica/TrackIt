@@ -30,8 +30,6 @@ export default function Habit({ tittle, days }) {
 
   daysOrder.map((value) => (weekBool[value] = true));
 
-  console.log(daysOrder, "ordem");
-  console.log(weekBool, "semana bool");
   return (
     <Container>
       <NameHabit>
@@ -45,7 +43,9 @@ export default function Habit({ tittle, days }) {
               {letterWeek(index)}
             </Day>
           ) : (
-            <Day key={index}>{letterWeek(index)}</Day>
+            <Day key={index} color="white">
+              {letterWeek(index)}
+            </Day>
           )
         )}
       </Days>
