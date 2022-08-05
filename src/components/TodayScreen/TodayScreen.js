@@ -2,6 +2,8 @@ import dayjs from "dayjs";
 import React from "react";
 import { useContext, useEffect } from "react";
 import TokenUser from "../../context/tokencontext";
+import HabitDone from "../../context/habitsDonecontext";
+import QtdHabits from "../../context/qtdHabitscontext";
 import { ThreeDots } from "react-loader-spinner";
 
 import {
@@ -27,13 +29,12 @@ import BottomBar from "../BottomBar/BottomBar";
 export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
-  const [lengthHabits, setLengthHabits] = React.useState({});
-  const [qtdDone, setqtdDone] = React.useState(0);
+  const { lengthHabits, setLengthHabits } = React.useContext(QtdHabits);
+  const { habitDone, setHabitDone } = useContext(HabitDone);
   const [loading, setLoading] = React.useState(false);
 
   function listHabitRequired(lista) {
     setHabits(lista);
-    console.log(lista);
     setLengthHabits(lista);
     countHabitsDone(lista);
   }
@@ -45,10 +46,8 @@ export default function TodayScreen() {
         qtd += 1;
       }
     }
-    setqtdDone(qtd);
+    setHabitDone(qtd);
   }
-
-  function reloadPage() {}
 
   function checkHab(id, check) {
     setLoading(true);
@@ -80,15 +79,17 @@ export default function TodayScreen() {
     ],
   });
 
+  console.log(habitDone, "habitos feitos");
+
   const day = dayjs().locale("pt-br").format("dddd, DD/MM");
   return (
     <>
       <TopBar />
       <View>
         <DayWeek>{day}</DayWeek>
-        {qtdDone > 0 ? (
+        {habitDone > 0 ? (
           <CompletedHabits>
-            {((qtdDone / lengthHabits.length) * 100).toFixed(0)}% dos hábitos
+            {((habitDone / lengthHabits.length) * 100).toFixed(0)}% dos hábitos
             concluídos
           </CompletedHabits>
         ) : (
