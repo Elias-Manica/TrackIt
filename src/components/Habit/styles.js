@@ -36,3 +36,7 @@ export const Day = styled.div`
   align-items: center;
   margin-right: 5px;
 `;
+
+export const Icon = styled.div`
+  color: "#666666";
+`;

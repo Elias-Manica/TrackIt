@@ -13,6 +13,7 @@ import Habit from "../Habit/Habit";
 export default function HabitsScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [listHabits, setListHabits] = React.useState([]);
+  const [reload, setReload] = React.useState(true);
   const [creatingHabit, setCreatingHabit] = React.useState(false);
 
   function habitValid(list) {
@@ -22,7 +23,7 @@ export default function HabitsScreen() {
 
   useEffect(
     () => listHabit(token).then((res) => habitValid(res.data)),
-    [creatingHabit]
+    [creatingHabit, reload]
   );
 
   console.log(listHabits);
@@ -47,7 +48,15 @@ export default function HabitsScreen() {
         )}
         {listHabits.length > 0 ? (
           listHabits.map((value) => (
-            <Habit key={value.id} tittle={value.name} days={value.days} />
+            <Habit
+              key={value.id}
+              tittle={value.name}
+              days={value.days}
+              id={value.id}
+              token={token}
+              reload={reload}
+              setReload={setReload}
+            />
           ))
         ) : (
           <p>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const View = styled.div`
-  height: 88vh;
+  min-height: 100vh;
   background-color: #f2f2f2;
   padding-bottom: 90px;
   padding-top: 90px;

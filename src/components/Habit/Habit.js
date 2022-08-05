@@ -1,4 +1,5 @@
-import { Container, Days, Day, NameHabit } from "./styles";
+import { deleteHabit } from "../../services/trackitServices";
+import { Container, Days, Day, NameHabit, Icon } from "./styles";
 
 function letterWeek(dayNumber) {
   if (dayNumber === 0) {
@@ -24,7 +25,7 @@ function letterWeek(dayNumber) {
   }
 }
 
-export default function Habit({ tittle, days }) {
+export default function Habit({ tittle, days, id, token, reload, setReload }) {
   const daysOrder = days.sort();
   const weekBool = [false, false, false, false, false, false, false];
 
@@ -34,7 +35,9 @@ export default function Habit({ tittle, days }) {
     <Container>
       <NameHabit>
         <h1>{tittle}</h1>
-        <ion-icon name="trash-outline"></ion-icon>
+        <Icon onClick={() => deleteHabit(id, token).then(setReload(!reload))}>
+          <ion-icon name="trash-outline"></ion-icon>
+        </Icon>
       </NameHabit>
       <Days>
         {weekBool.map((bool, index) =>

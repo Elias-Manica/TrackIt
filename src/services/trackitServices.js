@@ -69,6 +69,17 @@ function uncheckHabit(idHabit, token) {
   return promise;
 }
 
+function deleteHabit(idHabit, token) {
+  const id = idHabit;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.delete(`${Base_URL}/habits/${id}`, config);
+  return promise;
+}
+
 export {
   login,
   singUp,
@@ -77,4 +88,5 @@ export {
   createHabit,
   checkHabit,
   uncheckHabit,
+  deleteHabit,
 };
