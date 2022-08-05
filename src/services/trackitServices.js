@@ -47,4 +47,34 @@ function createHabit(name, days, token) {
   return promise;
 }
 
-export { login, singUp, listHabitToday, listHabit, createHabit };
+function checkHabit(idHabit, token) {
+  const id = idHabit;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.post(`${Base_URL}/habits/${id}/check`, {}, config);
+  return promise;
+}
+
+function uncheckHabit(idHabit, token) {
+  const id = idHabit;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.post(`${Base_URL}/habits/${id}/uncheck`, {}, config);
+  return promise;
+}
+
+export {
+  login,
+  singUp,
+  listHabitToday,
+  listHabit,
+  createHabit,
+  checkHabit,
+  uncheckHabit,
+};

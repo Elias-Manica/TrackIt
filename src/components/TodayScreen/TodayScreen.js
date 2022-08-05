@@ -2,8 +2,13 @@ import dayjs from "dayjs";
 import React from "react";
 import { useContext, useEffect } from "react";
 import TokenUser from "../../context/tokencontext";
+import { ThreeDots } from "react-loader-spinner";
 
-import { listHabitToday } from "../../services/trackitServices";
+import {
+  listHabitToday,
+  checkHabit,
+  uncheckHabit,
+} from "../../services/trackitServices";
 
 import {
   CompletedHabits,
@@ -14,6 +19,7 @@ import {
   HabitData,
   UnCompletedHabits,
   View,
+  Icon,
 } from "./styles";
 import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
@@ -21,15 +27,14 @@ import BottomBar from "../BottomBar/BottomBar";
 export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
-  const [habitDone, setHabitDone] = React.useState({});
   const [lengthHabits, setLengthHabits] = React.useState({});
   const [qtdDone, setqtdDone] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
 
   function listHabitRequired(lista) {
     setHabits(lista);
     console.log(lista);
     setLengthHabits(lista);
-    setHabitDone(lista);
     countHabitsDone(lista);
   }
 
@@ -43,9 +48,20 @@ export default function TodayScreen() {
     setqtdDone(qtd);
   }
 
+  function reloadPage() {}
+
+  function checkHab(id, check) {
+    setLoading(true);
+    if (check) {
+      uncheckHabit(id, token).then(() => setLoading(false));
+    } else {
+      checkHabit(id, token).then(() => setLoading(false));
+    }
+  }
+
   useEffect(
     () => listHabitToday(token).then((res) => listHabitRequired(res.data)),
-    [token]
+    [loading]
   );
 
   let updateLocale = require("dayjs/plugin/updateLocale");
@@ -72,14 +88,15 @@ export default function TodayScreen() {
         <DayWeek>{day}</DayWeek>
         {qtdDone > 0 ? (
           <CompletedHabits>
-            {(qtdDone / lengthHabits.length) * 100}% dos hábitos concluídos
+            {((qtdDone / lengthHabits.length) * 100).toFixed(0)}% dos hábitos
+            concluídos
           </CompletedHabits>
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
         {habits.length > 0
           ? habits.map((value) => (
-              <HabitContainer check={value.done}>
+              <HabitContainer check={value.done} key={value.id}>
                 <GoalHabit>
                   <Habit>{value.name}</Habit>
                   <HabitData>
@@ -89,7 +106,13 @@ export default function TodayScreen() {
                     Seu recorde: {value.highestSequence} dias
                   </HabitData>
                 </GoalHabit>
-                <ion-icon name="checkbox"></ion-icon>
+                <Icon onClick={() => checkHab(value.id, value.done)}>
+                  {loading ? (
+                    <ThreeDots color="green" height={40} width={40} />
+                  ) : (
+                    <ion-icon name="checkbox"></ion-icon>
+                  )}
+                </Icon>
               </HabitContainer>
             ))
           : ""}

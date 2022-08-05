@@ -77,3 +77,5 @@ export const HabitData = styled.h2`
 
   color: #666666;
 `;
+
+export const Icon = styled.div``;
