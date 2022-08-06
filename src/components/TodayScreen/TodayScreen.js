@@ -26,6 +26,8 @@ import {
 import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
 
+import gif from "../../assets/images/loading.gif";
+
 export default function TodayScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
@@ -95,6 +97,7 @@ export default function TodayScreen() {
         ) : (
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
+
         {habits.length > 0
           ? habits.map((value) => (
               <HabitContainer check={value.done} key={value.id}>

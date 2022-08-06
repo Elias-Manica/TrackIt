@@ -39,4 +39,5 @@ export const Day = styled.div`
 
 export const Icon = styled.div`
   color: "#666666";
+  cursor: pointer;
 `;

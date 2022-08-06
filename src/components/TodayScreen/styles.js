@@ -5,6 +5,11 @@ export const View = styled.div`
   background-color: #f2f2f2;
   padding-bottom: 90px;
   padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  img {
+    align-self: center;
+  }
 `;
 
 export const DayWeek = styled.h1`
