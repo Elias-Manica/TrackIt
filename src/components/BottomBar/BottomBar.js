@@ -16,7 +16,10 @@ export default function BottomBar() {
   return (
     <Container>
       <Tittle onClick={() => navigate("/habitos")}>Hábitos</Tittle>
-      <div style={{ width: 90, height: 90 }} onClick={() => navigate("/hoje")}>
+      <div
+        style={{ width: 90, height: 90, cursor: "pointer" }}
+        onClick={() => navigate("/hoje")}
+      >
         <AnimatedProgressProvider
           valueStart={0}
           valueEnd={(habitDone / lengthHabits.length) * 100}

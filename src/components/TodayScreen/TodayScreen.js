@@ -100,11 +100,26 @@ export default function TodayScreen() {
               <HabitContainer check={value.done} key={value.id}>
                 <GoalHabit>
                   <Habit>{value.name}</Habit>
-                  <HabitData>
-                    Sequência atual: {value.currentSequence} dia
+
+                  <HabitData
+                    color={
+                      value.currentSequence === value.highestSequence &&
+                      value.currentSequence !== 0
+                        ? "#8FC549"
+                        : "#666666"
+                    }
+                  >
+                    Sequência atual: <span>{value.currentSequence} dias</span>
                   </HabitData>
-                  <HabitData>
-                    Seu recorde: {value.highestSequence} dias
+                  <HabitData
+                    color={
+                      value.currentSequence === value.highestSequence &&
+                      value.currentSequence !== 0
+                        ? "#8FC549"
+                        : "#666666"
+                    }
+                  >
+                    Seu recorde: <span>{value.highestSequence} dias</span>
                   </HabitData>
                 </GoalHabit>
                 <Icon onClick={() => checkHab(value.id, value.done)}>

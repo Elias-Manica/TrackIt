@@ -75,8 +75,13 @@ export const HabitData = styled.h2`
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
-
   color: #666666;
+
+  span {
+    color: ${(props) => props.color};
+  }
 `;
 
-export const Icon = styled.div``;
+export const Icon = styled.div`
+  cursor: pointer;
+`;
