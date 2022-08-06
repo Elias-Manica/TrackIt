@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Input = styled.input`
   width: 100%;
   height: 45px;
-  background: #ffffff;
+  background: ${(props) => props.color};
   border: 1px solid #d5d5d5;
   border-radius: 5px;
   padding-left: 10px;
@@ -32,6 +32,8 @@ export const Input = styled.input`
 
 export const Days = styled.div`
   display: flex;
+  opacity: ${(props) => props.opacity};
+  pointer-events: ${(props) => props.event};
 `;
 
 export const ContainerButtons = styled.div`
@@ -67,4 +69,5 @@ export const ButtonSave = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: ${(props) => props.color};
 `;

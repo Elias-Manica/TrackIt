@@ -51,8 +51,10 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
           onChange={(e) => setNameHabit(e.target.value)}
           value={nameHabit}
           required
+          disabled={loading ? true : false}
+          color={loading ? "#F2F2F2" : "#FFFFF"}
         ></Input>
-        <Days>
+        <Days opacity={loading ? "0.7" : "1"} event={loading ? "none" : ""}>
           <DayLayout index={0}>D</DayLayout>
           <DayLayout index={1}>S</DayLayout>
           <DayLayout index={2}>T</DayLayout>
@@ -63,7 +65,10 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
         </Days>
         <ContainerButtons>
           <Cancel onClick={() => cancelCreateHabit()}>Cancelar</Cancel>
-          <ButtonSave>
+          <ButtonSave
+            disabled={loading ? true : false}
+            color={loading ? "0.7" : "1"}
+          >
             {loading ? (
               <ThreeDots color="white" height={40} width={40} />
             ) : (

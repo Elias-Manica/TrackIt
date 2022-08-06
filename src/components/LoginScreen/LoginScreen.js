@@ -50,6 +50,8 @@ export default function LoginScreen() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={loading ? true : false}
+          color={loading ? "#F2F2F2" : "#FFFFFF"}
         ></Input>
         <Input
           placeholder="senha"
@@ -57,8 +59,10 @@ export default function LoginScreen() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={loading ? true : false}
+          color={loading ? "#F2F2F2" : "#FFFFF"}
         ></Input>
-        <Button>
+        <Button disabled={loading ? true : false} color={loading ? "0.7" : "1"}>
           {loading ? (
             <ThreeDots color="white" height={40} width={40} />
           ) : (

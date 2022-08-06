@@ -20,7 +20,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   width: 100%;
   height: 45px;
-  background: #ffffff;
+  background: ${(props) => props.color};
   border: 1px solid #d5d5d5;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -52,6 +52,7 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: ${(props) => props.color};
 `;
 
 export const GoSingUp = styled.h1`
