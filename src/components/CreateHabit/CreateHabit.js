@@ -24,11 +24,15 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
 
   function creatingHabit(e) {
     e.preventDefault();
-    setLoading(true);
-    console.log(token);
-    createHabit(nameHabit, listDays, token)
-      .then((res) => createHabitValid(res))
-      .catch((res) => console.log(res, "erro"));
+    if (listDays.length === 0) {
+      alert("selecione pelo menos um dia da semana");
+    } else {
+      setLoading(true);
+      console.log(token);
+      createHabit(nameHabit, listDays, token)
+        .then((res) => createHabitValid(res))
+        .catch((res) => console.log(res, "erro"));
+    }
   }
 
   function createHabitValid(res) {

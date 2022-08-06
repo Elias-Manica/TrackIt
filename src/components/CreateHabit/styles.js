@@ -51,6 +51,7 @@ export const Cancel = styled.h3`
   line-height: 20px;
   color: #52b6ff;
   margin-right: 20px;
+  cursor: pointer;
 `;
 
 export const ButtonSave = styled.button`

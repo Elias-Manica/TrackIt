@@ -10,6 +10,8 @@ import { listHabit } from "../../services/trackitServices";
 import { ButtonCreate, HabitLayout, Tittle, View } from "./styles";
 import Habit from "../Habit/Habit";
 
+import gif from "../../assets/images/loading.gif";
+
 export default function HabitsScreen() {
   const { token, setToken } = useContext(TokenUser);
   const [listHabits, setListHabits] = React.useState([]);
