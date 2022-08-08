@@ -33,22 +33,6 @@ export default function TodayScreen() {
   const { habitDone, setHabitDone } = useContext(HabitDone);
   const [loading, setLoading] = React.useState(false);
 
-  function listHabitRequired(lista) {
-    setHabits(lista);
-    setLengthHabits(lista);
-    countHabitsDone(lista);
-  }
-
-  function countHabitsDone(listaHabits) {
-    let qtd = 0;
-    for (let i = 0; i < listaHabits.length; i++) {
-      if (listaHabits[i].done) {
-        qtd += 1;
-      }
-    }
-    setHabitDone(qtd);
-  }
-
   function checkHab(id, check) {
     setLoading(true);
     if (check) {
@@ -58,10 +42,23 @@ export default function TodayScreen() {
     }
   }
 
-  useEffect(
-    () => listHabitToday(token).then((res) => listHabitRequired(res.data)),
-    [loading, token]
-  );
+  useEffect(() => {
+    const listHabitRequired = (lista) => {
+      setHabits(lista);
+      setLengthHabits(lista);
+      countHabitsDone(lista);
+    };
+    const countHabitsDone = (listaHabits) => {
+      let qtd = 0;
+      for (let i = 0; i < listaHabits.length; i++) {
+        if (listaHabits[i].done) {
+          qtd += 1;
+        }
+      }
+      setHabitDone(qtd);
+    };
+    listHabitToday(token).then((res) => listHabitRequired(res.data));
+  }, [loading, token, setLengthHabits, setHabitDone]);
 
   let updateLocale = require("dayjs/plugin/updateLocale");
 
