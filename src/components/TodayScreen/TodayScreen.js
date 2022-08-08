@@ -25,6 +25,7 @@ import {
 } from "./styles";
 import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
+import loadingGif from "../../assets/images/loading.gif";
 
 export default function TodayScreen() {
   const { token } = useContext(TokenUser);
@@ -91,43 +92,45 @@ export default function TodayScreen() {
           <UnCompletedHabits>Nenhum hábito concluído ainda</UnCompletedHabits>
         )}
 
-        {habits.length > 0
-          ? habits.map((value) => (
-              <HabitContainer check={value.done} key={value.id}>
-                <GoalHabit>
-                  <Habit>{value.name}</Habit>
+        {habits.length > 0 ? (
+          habits.map((value) => (
+            <HabitContainer check={value.done} key={value.id}>
+              <GoalHabit>
+                <Habit>{value.name}</Habit>
 
-                  <HabitData
-                    color={
-                      value.currentSequence === value.highestSequence &&
-                      value.currentSequence !== 0
-                        ? "#8FC549"
-                        : "#666666"
-                    }
-                  >
-                    Sequência atual: <span>{value.currentSequence} dias</span>
-                  </HabitData>
-                  <HabitData
-                    color={
-                      value.currentSequence === value.highestSequence &&
-                      value.currentSequence !== 0
-                        ? "#8FC549"
-                        : "#666666"
-                    }
-                  >
-                    Seu recorde: <span>{value.highestSequence} dias</span>
-                  </HabitData>
-                </GoalHabit>
-                <Icon onClick={() => checkHab(value.id, value.done)}>
-                  {loading ? (
-                    <ThreeDots color="green" height={40} width={40} />
-                  ) : (
-                    <ion-icon name="checkbox"></ion-icon>
-                  )}
-                </Icon>
-              </HabitContainer>
-            ))
-          : ""}
+                <HabitData
+                  color={
+                    value.currentSequence === value.highestSequence &&
+                    value.currentSequence !== 0
+                      ? "#8FC549"
+                      : "#666666"
+                  }
+                >
+                  Sequência atual: <span>{value.currentSequence} dias</span>
+                </HabitData>
+                <HabitData
+                  color={
+                    value.currentSequence === value.highestSequence &&
+                    value.currentSequence !== 0
+                      ? "#8FC549"
+                      : "#666666"
+                  }
+                >
+                  Seu recorde: <span>{value.highestSequence} dias</span>
+                </HabitData>
+              </GoalHabit>
+              <Icon onClick={() => checkHab(value.id, value.done)}>
+                {loading ? (
+                  <ThreeDots color="green" height={40} width={40} />
+                ) : (
+                  <ion-icon name="checkbox"></ion-icon>
+                )}
+              </Icon>
+            </HabitContainer>
+          ))
+        ) : (
+          <img src={loadingGif} alt="gif"></img>
+        )}
       </View>
       <BottomBar />
     </>

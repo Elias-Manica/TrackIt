@@ -16,7 +16,7 @@ import {
 import DayLayout from "../Day/DayLayout";
 import { createHabit } from "../../services/trackitServices";
 
-export default function CreateHabit({ setCreatingHabit, setListHabits }) {
+export default function CreateHabit({ setCreatingHabit }) {
   const [nameHabit, setNameHabit] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const { listDays, setListDays } = useContext(ListDays);
@@ -28,13 +28,15 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
       alert("selecione pelo menos um dia da semana");
     } else {
       setLoading(true);
-      createHabit(nameHabit, listDays, token).then((res) =>
-        createHabitValid(res)
-      );
+      createHabit(nameHabit, listDays, token)
+        .then(() => createHabitValid())
+        .catch((res) =>
+          alert(`algo deu errado, tente novamente ${res.response.data.message}`)
+        );
     }
   }
 
-  function createHabitValid(res) {
+  function createHabitValid() {
     setListDays([]);
     setLoading(false);
     setCreatingHabit(false);
