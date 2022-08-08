@@ -15,15 +15,22 @@ export const Tittle = styled.h1`
   line-height: 29px;
   margin-left: 20px;
   color: #126ba5;
+  margin-bottom: 20px;
 `;
 
-export const HistoryText = styled.p`
-  font-family: "Lexend Deca";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  margin-top: 20px;
-  margin-left: 20px;
-  color: #666666;
+export const History = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CalendarContainer = styled.div`
+  .rdp {
+    margin: 0;
+  }
+
+  .rdp-button[aria-disabled="true"] {
+    opacity: 1;
+    background-color: green;
+  }
 `;

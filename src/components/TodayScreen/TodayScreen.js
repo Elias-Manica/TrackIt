@@ -26,10 +26,8 @@ import {
 import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
 
-import gif from "../../assets/images/loading.gif";
-
 export default function TodayScreen() {
-  const { token, setToken } = useContext(TokenUser);
+  const { token } = useContext(TokenUser);
   const [habits, setHabits] = React.useState([]);
   const { lengthHabits, setLengthHabits } = React.useContext(QtdHabits);
   const { habitDone, setHabitDone } = useContext(HabitDone);
@@ -62,7 +60,7 @@ export default function TodayScreen() {
 
   useEffect(
     () => listHabitToday(token).then((res) => listHabitRequired(res.data)),
-    [loading]
+    [loading, token]
   );
 
   let updateLocale = require("dayjs/plugin/updateLocale");
@@ -80,8 +78,6 @@ export default function TodayScreen() {
       "Sabádo",
     ],
   });
-
-  console.log(habitDone, "habitos feitos");
 
   const day = dayjs().locale("pt-br").format("dddd, DD/MM");
   return (

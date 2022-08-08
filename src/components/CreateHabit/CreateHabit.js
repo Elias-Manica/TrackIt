@@ -20,7 +20,7 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
   const [nameHabit, setNameHabit] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const { listDays, setListDays } = useContext(ListDays);
-  const { token, setToken } = useContext(TokenUser);
+  const { token } = useContext(TokenUser);
 
   function creatingHabit(e) {
     e.preventDefault();
@@ -28,15 +28,13 @@ export default function CreateHabit({ setCreatingHabit, setListHabits }) {
       alert("selecione pelo menos um dia da semana");
     } else {
       setLoading(true);
-      console.log(token);
-      createHabit(nameHabit, listDays, token)
-        .then((res) => createHabitValid(res))
-        .catch((res) => console.log(res, "erro"));
+      createHabit(nameHabit, listDays, token).then((res) =>
+        createHabitValid(res)
+      );
     }
   }
 
   function createHabitValid(res) {
-    console.log(res, "foi");
     setListDays([]);
     setLoading(false);
     setCreatingHabit(false);

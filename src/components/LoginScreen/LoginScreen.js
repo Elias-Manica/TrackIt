@@ -13,13 +13,12 @@ export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const { picUser, setPicUser } = useContext(UserContext);
-  const { token, setToken } = useContext(TokenUser);
+  const { setPicUser } = useContext(UserContext);
+  const { setToken } = useContext(TokenUser);
   const navigate = useNavigate();
 
   function loginValid(tokenUser, imageUser) {
     localStorage.setItem("trackit", JSON.stringify({ token: `${tokenUser}` }));
-    console.log(imageUser);
     setPicUser(imageUser);
     setToken(tokenUser);
     setLoading(false);
@@ -34,7 +33,6 @@ export default function LoginScreen() {
   function tryLogin(e) {
     e.preventDefault();
     setLoading(true);
-    console.log("clicou");
     login({ email, password })
       .then((res) => loginValid(res.data.token, res.data.image))
       .catch((res) => loginInvalid(res.response.data.message));

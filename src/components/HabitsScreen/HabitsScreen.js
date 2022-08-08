@@ -10,25 +10,20 @@ import { listHabit } from "../../services/trackitServices";
 import { ButtonCreate, HabitLayout, Tittle, View } from "./styles";
 import Habit from "../Habit/Habit";
 
-import gif from "../../assets/images/loading.gif";
-
 export default function HabitsScreen() {
-  const { token, setToken } = useContext(TokenUser);
+  const { token } = useContext(TokenUser);
   const [listHabits, setListHabits] = React.useState([]);
   const [reload, setReload] = React.useState(true);
   const [creatingHabit, setCreatingHabit] = React.useState(false);
 
   function habitValid(list) {
     setListHabits(list);
-    console.log(listHabits, "isso que ta sendo passado");
   }
 
   useEffect(
     () => listHabit(token).then((res) => habitValid(res.data)),
-    [creatingHabit, reload]
+    [creatingHabit, reload, token]
   );
-
-  console.log(listHabits);
 
   return (
     <>

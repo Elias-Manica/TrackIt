@@ -80,6 +80,16 @@ function deleteHabit(idHabit, token) {
   return promise;
 }
 
+function getHistory(token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.get(`${Base_URL}/habits/history/daily`, config);
+  return promise;
+}
+
 export {
   login,
   singUp,
@@ -89,4 +99,5 @@ export {
   checkHabit,
   uncheckHabit,
   deleteHabit,
+  getHistory,
 };

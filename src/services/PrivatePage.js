@@ -5,7 +5,7 @@ import { View, Button } from "../components/PageDesconected/styles";
 
 export default function PrivatePage({ children }) {
   const auth = JSON.parse(localStorage.getItem("trackit"));
-  const { token, setToken } = useContext(TokenUser);
+  const { token } = useContext(TokenUser);
 
   const navigate = useNavigate();
 

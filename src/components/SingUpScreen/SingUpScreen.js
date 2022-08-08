@@ -16,7 +16,6 @@ export default function SingUpScreen() {
   const navigate = useNavigate();
 
   function singUpCorrect(res) {
-    console.log(res, "foi");
     alert("Parabéns! seu usuário foi cadastrado corretamente");
     setLoading(false);
     navigate("/");
@@ -30,7 +29,6 @@ export default function SingUpScreen() {
   function singUpData(e) {
     e.preventDefault();
     setLoading(true);
-    console.log(email, password, name, image);
     singUp({ email, password, name, image })
       .then((res) => singUpCorrect(res))
       .catch((res) => singUpInvalid(res.response.data.message));

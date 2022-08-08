@@ -5,7 +5,7 @@ import UserContext from "../../context/imagecontext";
 import { Container, ImageUser, Tittle } from "./styles";
 
 export default function TopBar() {
-  const { picUser, setPicUser } = useContext(UserContext);
+  const { picUser } = useContext(UserContext);
   return (
     <Container>
       <Tittle>TrackIt</Tittle>

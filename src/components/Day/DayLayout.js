@@ -18,8 +18,6 @@ export default function DayLayout({ children, index }) {
     }
   }
 
-  console.log(listDays);
-
   return (
     <Day onClick={() => pushIndexDay(index)} color={colorDay}>
       {children}
