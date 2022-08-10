@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { CalendarContainer, History, Tittle, View } from "./styles";
 import TopBar from "../TopBar/TopBar";
 import BottomBar from "../BottomBar/BottomBar";
-import loadingGif from "../../assets/images/loading.gif";
 import { getHistory } from "../../services/trackitServices";
 import TokenUser from "../../context/tokencontext";
 import React, { useEffect, useState } from "react";
@@ -57,17 +56,13 @@ export default function HistoryScreen() {
         <Tittle>Histórico</Tittle>
         <History>
           <CalendarContainer>
-            {listdays.length > 0 ? (
-              <DayPicker
-                mode="single"
-                modifiers={{ booked: listdays }}
-                modifiersStyles={{ booked: bookedStyle }}
-                disabled={habits}
-                locale={ptBr}
-              />
-            ) : (
-              <img src={loadingGif} alt="loading"></img>
-            )}
+            <DayPicker
+              mode="single"
+              modifiers={{ booked: listdays }}
+              modifiersStyles={{ booked: bookedStyle }}
+              disabled={habits}
+              locale={ptBr}
+            />
           </CalendarContainer>
         </History>
       </View>
