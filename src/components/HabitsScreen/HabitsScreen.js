@@ -35,14 +35,11 @@ export default function HabitsScreen() {
             +
           </ButtonCreate>
         </HabitLayout>
-        {creatingHabit ? (
-          <CreateHabit
-            setCreatingHabit={setCreatingHabit}
-            setListHabits={setListHabits}
-          />
-        ) : (
-          ""
-        )}
+        <CreateHabit
+          creatingHabit={creatingHabit}
+          setCreatingHabit={setCreatingHabit}
+          setListHabits={setListHabits}
+        />
         {listHabits.length > 0 ? (
           listHabits.map((value) => (
             <Habit

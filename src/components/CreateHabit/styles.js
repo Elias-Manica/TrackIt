@@ -9,6 +9,7 @@ export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
   padding: 10px;
+  display: ${(props) => (props.creatingHabit ? "" : "none")};
 `;
 
 export const Input = styled.input`

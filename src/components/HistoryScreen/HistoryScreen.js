@@ -20,7 +20,6 @@ export default function HistoryScreen() {
   const { token } = useContext(TokenUser);
 
   function valid(historico) {
-    console.log(historico);
     bookedDays = [];
     newBookedDays = [];
     daysHabitsPass = [];

@@ -16,13 +16,13 @@ import {
 import DayLayout from "../Day/DayLayout";
 import { createHabit } from "../../services/trackitServices";
 
-export default function CreateHabit({ setCreatingHabit }) {
+export default function CreateHabit({ creatingHabit, setCreatingHabit }) {
   const [nameHabit, setNameHabit] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const { listDays, setListDays } = useContext(ListDays);
   const { token } = useContext(TokenUser);
 
-  function creatingHabit(e) {
+  function createHabits(e) {
     e.preventDefault();
     if (listDays.length === 0) {
       alert("selecione pelo menos um dia da semana");
@@ -48,8 +48,8 @@ export default function CreateHabit({ setCreatingHabit }) {
   }
 
   return (
-    <Container>
-      <form onSubmit={creatingHabit}>
+    <Container creatingHabit={creatingHabit}>
+      <form onSubmit={createHabits}>
         <Input
           placeholder="nome do hábito"
           onChange={(e) => setNameHabit(e.target.value)}
