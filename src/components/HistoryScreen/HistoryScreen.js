@@ -20,6 +20,7 @@ export default function HistoryScreen() {
   const { token } = useContext(TokenUser);
 
   function valid(historico) {
+    console.log(historico);
     bookedDays = [];
     newBookedDays = [];
     daysHabitsPass = [];
@@ -28,17 +29,17 @@ export default function HistoryScreen() {
         feito.done &&
         !daysHabitsPass.includes(
           new Date(
-            `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[4]}, ${value.day[1]} `
+            `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[3]}${value.day[4]}, ${value.day[0]}${value.day[1]} `
           )
         )
           ? newBookedDays.push(
               new Date(
-                `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[4]}, ${value.day[1]} `
+                `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[3]}${value.day[4]}, ${value.day[0]}${value.day[1]} `
               )
             )
           : daysHabitsPass.push(
               new Date(
-                `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[4]}, ${value.day[1]} `
+                `${value.day[6]}${value.day[7]}${value.day[8]}${value.day[9]}, ${value.day[3]}${value.day[4]}, ${value.day[0]}${value.day[1]} `
               )
             )
       )
