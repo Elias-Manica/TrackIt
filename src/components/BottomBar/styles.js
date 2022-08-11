@@ -10,6 +10,13 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  div {
+    transition: transform 250ms;
+    &&:hover {
+      transform: translateY(-3px);
+    }
+  }
 `;
 
 export const Tittle = styled.h1`
@@ -21,6 +28,10 @@ export const Tittle = styled.h1`
   text-align: center;
   cursor: pointer;
   color: #52b6ff;
+  transition: transform 250ms;
+  &&:hover {
+    transform: translateY(-3px);
+  }
 `;
 
 export const Buttom = styled.div`
