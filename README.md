@@ -50,12 +50,8 @@ Others:<br>
 ```bash
 npm i
 ```
-5. Run the front-end with
+3. Run the front-end with
 ```bash
 npm start
 ```
-6. You can optionally build the project running
-```bash
-npm run build
-```
-7. Finally access http://localhost:3000 on your browser
+4. Finally access http://localhost:3000 on your browser
