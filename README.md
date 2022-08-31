@@ -2,7 +2,7 @@
 
 A responsive website that the user can create habits for their routine and follow their evolution.
 
-gif
+![2022-08-30-21-24-38 (1)](https://user-images.githubusercontent.com/103606213/187568734-0f8ce766-fd5f-44aa-842f-028db6ac4521.gif)
 
 Try it out now at https://track-it-lac.vercel.app/
 
